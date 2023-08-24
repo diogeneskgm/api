@@ -1,5 +1,6 @@
 package br.com.melo.api.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -31,8 +32,24 @@ public class Product extends AbstractEntity{
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+
     private Collection<Category> categories;
 
+    @OneToMany(mappedBy="product")
+    @JsonManagedReference
+    private Collection<Review> reviews;
+
+    @JsonInclude
+    @Transient
+    private Double reviewRate;
+
+    public Collection<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Collection<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Long getId() {
         return id;
@@ -80,5 +97,13 @@ public class Product extends AbstractEntity{
 
     public void setCategories(Collection<Category> categories) {
         this.categories = categories;
+    }
+
+    public Double getReviewRate() {
+        return reviewRate;
+    }
+
+    public void setReviewRate(Double reviewRate) {
+        this.reviewRate = reviewRate;
     }
 }
