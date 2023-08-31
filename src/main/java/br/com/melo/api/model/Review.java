@@ -3,11 +3,10 @@ package br.com.melo.api.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Table(name = "products_reviews")
-public class Review extends AbstractEntity{
+public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

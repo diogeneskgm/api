@@ -2,7 +2,6 @@ package br.com.melo.api.controller;
 
 
 import br.com.melo.api.model.Category;
-import br.com.melo.api.repository.CategoryRepository;
 import br.com.melo.api.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,7 +45,7 @@ public class CategoryController {
     @PutMapping("/{id}")
     public ResponseEntity<Category> atualizarCategoria(@RequestBody Category category, @PathVariable Long id) {
         try {
-            Category categoriaNoBancoDeDados = categoryService.retornarCategoriaPorId(id);
+            categoryService.retornarCategoriaPorId(id);
             category.setId(id);
             categoryService.salvarCategoria(category);
             return new ResponseEntity<>(category, HttpStatus.OK);

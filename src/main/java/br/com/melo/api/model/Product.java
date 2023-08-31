@@ -8,7 +8,7 @@ import java.util.Collection;
 
 @Entity
 @Table(name = "products")
-public class Product extends AbstractEntity{
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
